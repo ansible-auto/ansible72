@@ -1,0 +1,37 @@
+#_3_CISCO UNIFIED CALL MANAGER EXPRESS COMMAND
+#CUCM ANALOG PHONES CONFIG
+#CHANGE THE UNDERSCORE _ TO YOUR MONITOR NUMBER.
+
+
+---
+
+#- name: CUCM-_
+  #hosts: cucm
+  #gather_facts: false
+  #connection: local
+  #tasks:
+    - name: ANALOG
+      telnet:
+        user: admin
+        password: pass
+        login_prompt: "Username: "
+        prompts:
+          - '[>|#]'
+        command:
+          - terminal length 0
+          - enable
+          - config t
+          - configure terminal
+          - dial-peer voice 1 pots
+          - destination-pattern 7210
+          - port 0/0/0
+          - dial-peer voice 2 pots
+          - destination-pattern 7220
+          - port 0/0/1
+          - dial-peer voice 3 pots
+          - destination-pattern 7230
+          - port 0/0/2
+          - dial-peer voice 4 pots
+          - destination-pattern 7240
+          - port 0/0/3
+          - end
